@@ -30,7 +30,7 @@ The published suite contains **382 passing tests**, including real local HTTP ti
 client-disconnect checks. Independent review found and verified fixes for an unbounded
 retry sleeper and exception messages leaking into logs.
 
-[Repository](https://github.com/RyanJBush/self-healing-llm-gateway) ·
+[Repository](https://github.com/RyanJBush/Self-Healing-LLM-Gateway) ·
 [Reproduce the demo](../README.md#verify) ·
 [Observed report](../evidence/acceptance-report.txt) ·
 [Verification](../evidence/verification.md) ·

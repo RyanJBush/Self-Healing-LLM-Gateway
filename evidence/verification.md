@@ -24,11 +24,16 @@ all acceptance assertions using the installed package.
 
 ## GitHub CI
 
-[Publication CI passed](https://github.com/RyanJBush/self-healing-llm-gateway/actions/runs/42944790109)
+[Publication CI passed](https://github.com/RyanJBush/Self-Healing-LLM-Gateway/actions/runs/42944790109)
 on code commit `ebd21041decd96731503f32ad5b7a31380f9b970`: all six Windows/Ubuntu
 Python 3.11, 3.12, and 3.13 test-and-acceptance jobs passed, followed by the mutation job.
 [Recorded job results](ci-results.json). The final publication status update changes
 documentation and evidence only; the tested code is unchanged.
+
+Repository rename: the repository was renamed from `RyanJBush/self-healing-llm-gateway`
+to `RyanJBush/Self-Healing-LLM-Gateway` after publication. Active links in this page use
+the new name. The frozen raw record in [ci-results.json](ci-results.json) keeps the URLs
+as captured; the run and job IDs are unchanged and identify the same runs.
 
 ## Still outside verified scope
 
@@ -38,7 +43,7 @@ timeouts against a controlled server; they do not establish remote LLM behavior 
 
 ## Publication timing correction (v0.2.2)
 
-The [first CI run](https://github.com/RyanJBush/self-healing-llm-gateway/actions/runs/42944253974)
+The [first CI run](https://github.com/RyanJBush/Self-Healing-LLM-Gateway/actions/runs/42944253974)
 passed five matrix jobs but failed Windows/Python 3.11: the observed retry elapsed time
 was 94 ms rather than the configured 100 ms minimum. The assertion was retained.
 
