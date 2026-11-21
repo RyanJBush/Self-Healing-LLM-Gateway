@@ -1,7 +1,14 @@
-# Self-Healing LLM Gateway (MVP)
+# Self-Healing LLM Gateway
 
-[![CI](https://github.com/RyanJBush/self-healing-llm-gateway/actions/workflows/ci.yml/badge.svg)](https://github.com/RyanJBush/self-healing-llm-gateway/actions/workflows/ci.yml)
+**Reliable LLM Request Routing with Retries, Failover & Circuit Breakers**
+
+[![CI](https://github.com/RyanJBush/Self-Healing-LLM-Gateway/actions/workflows/ci.yml/badge.svg)](https://github.com/RyanJBush/Self-Healing-LLM-Gateway/actions/workflows/ci.yml)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+A reproducible LLM gateway demonstrating bounded retries, automatic provider failover,
+circuit-breaker recovery, deadline enforcement, and privacy-conscious execution tracing.
+This is a local reliability-engineering MVP: the published evaluation uses **deterministic
+provider stubs and a simulated clock**, not real LLM providers.
 
 Local, non-streaming `POST /v1/generations` with two ordered providers (`primary`, then
 `fallback`), gateway-owned retries, a total deadline, and per-provider circuit breakers.
@@ -88,14 +95,22 @@ real cost. All timings are **simulated**; providers are **stubs**.
 
 ## Limitations
 
-**Pending (not verified; nothing here should be read as passing):**
+**Verified:**
 
-- **GitHub CI: pending.** The workflow is written and parses as YAML; it has not been run.
-- **Linux and macOS: pending.** Everything was run on Windows 11 only.
-- **Python 3.11: pending.** Not installed on the test machine (3.12, 3.13 and 3.14 were run on Windows).
-- **Real LLM provider: pending.** Stubs only. The local HTTP integration tests use a
+- **Hosted GitHub CI: passed.** [Run 42944790109](https://github.com/RyanJBush/Self-Healing-LLM-Gateway/actions/runs/42944790109)
+  on code commit `ebd21041decd96731503f32ad5b7a31380f9b970`: tests and the acceptance report
+  on Ubuntu and Windows for Python 3.11, 3.12 and 3.13 (six jobs), then the mutation job.
+  The [first run](https://github.com/RyanJBush/Self-Healing-LLM-Gateway/actions/runs/42944253974)
+  failed on Windows/Python 3.11; see the correction below. The later publication commit
+  changed documentation and evidence only. [Recorded results](evidence/verification.md#github-ci).
+- **Local:** Windows 11 with Python 3.12, 3.13 and 3.14 before publication.
+
+**Not verified (nothing here should be read as passing):**
+
+- **macOS: not tested.** CI covers Ubuntu and Windows only.
+- **Real LLM provider: not tested.** Stubs only. The local HTTP integration tests use a
   controllable local server; they are not evidence of real-model integration.
-- **Load behaviour: pending.** Concurrency was tested with up to 5 simultaneous requests on
+- **Load behaviour: not tested.** Concurrency was tested with up to 5 simultaneous requests on
   one event loop.
 
 **Inherent limits:**
@@ -109,9 +124,11 @@ real cost. All timings are **simulated**; providers are **stubs**.
 
 ## Run
 
-Clone this repository, open a terminal in its folder, and use Python 3.11+.
+Use Python 3.11+.
 
 ```bash
+git clone https://github.com/RyanJBush/Self-Healing-LLM-Gateway.git
+cd Self-Healing-LLM-Gateway
 python -m venv .venv
 # Windows PowerShell: .venv\Scripts\Activate.ps1
 # Linux/macOS: source .venv/bin/activate
